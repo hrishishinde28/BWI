@@ -13,7 +13,7 @@ export const Login = () => {
   const [error, setError] = useState('');
   const [cartItems,setCartItems] = useState(0);
   const [cartTotal,setCartTotal] = useState(0);
-
+  
   useEffect(() => {
     // Check if a token exists in local storage
     const token = localStorage.getItem('token');
@@ -24,7 +24,20 @@ export const Login = () => {
       console.log(token);
       setUsername(decodedToken.username); // Get username from decoded token
     }
-  }, []); // Empty dependency array to run this effect only once on mount
+     // Check if cartItems and cartTotal exist in local storage
+     const storedCartItems = localStorage.getItem('cartItems');
+     const storedCartTotal = localStorage.getItem('cartTotal');
+ 
+     // If cartItems or cartTotal do not exist, initialize them in local storage
+     if (storedCartItems === null) {
+       localStorage.setItem('cartItems', JSON.stringify(cartItems));
+     }
+ 
+     if (storedCartTotal === null) {
+       localStorage.setItem('cartTotal', JSON.stringify(cartTotal));
+     }
+   
+  }, [cartItems,cartTotal]); // Empty dependency array to run this effect only once on mount
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -42,6 +55,8 @@ export const Login = () => {
           // If login successful, set token in local storage and mark user as logged in
           localStorage.setItem('token', data.token);
           localStorage.setItem('username',data.username);
+          localStorage.setItem('cartItems',0);
+          localStorage.setItem('cartTotal',0);
           setUsername(username); // Save username in state
           setIsLoggedIn(true);
         } else {

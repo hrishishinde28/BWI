@@ -4,16 +4,16 @@ import { Link } from 'react-router-dom';
 
 const MenuItems = [
     {
-        price : "5000 - 10000"
+        price : "100 - 200"
     },
     {
-        price : "10000 - 20000"
+        price : "200 - 500"
     },
     {
-        price : "20000 - 30000"
+        price : "500 - 1000"
     },
     {
-        price : "30000+"
+        price : "1000+"
     }
 ];
 
