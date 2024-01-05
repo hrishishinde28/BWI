@@ -1,0 +1,22 @@
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  
+  .card {
+    width: calc(33.33% - 20px);
+    margin: 20px 0;
+  }
+
+  .team-img{
+    height: 200px;
+    width: 100%;
+  }
+  
+  @media screen and (max-width: 991px) {
+    .card {
+      width: calc(50% - 20px);
+    }
+  }
